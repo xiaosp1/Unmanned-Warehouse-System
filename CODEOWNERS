@@ -2,41 +2,40 @@
 # 代码责任人（Code Owners）
 # ============================================================================
 # 作用：改了某路径的文件，PR 会自动请求对应责任人评审。
-#       在代码平台开启 "Require review from Code Owners" 后，评审即为强制。
+#       在 GitHub「Settings → Branches → Require review from Code Owners」
+#       勾选后，评审即为强制。
 #
-# 用法：
-#   1. 把下面的 @xxx-placeholder 全部替换成真实的平台账号 / 团队
-#   2. 一个路径可以跟多个责任人，空格分隔
-#   3. 越靠后的规则优先级越高（就近匹配）
+# 当前状态（引导期）：全部路径由仓库所有者 @xiaosp1 评审。
+# 成员加入后：把各模块对应的行替换为该模块的负责人（多个责任人空格分隔），
+#             并同步更新 README.md 第 6 节的联系人表（名单一处维护）。
 #
 # 平台差异：
-#   - GitHub / 工蜂（TCE）：本文件直接生效
-#   - Gitee：CODEOWNERS 不生效，需在「仓库设置 → 保护分支 / 合并请求」里
-#     手工指定每个分支的默认评审人。改完记得同步本文件，保持"名单一处维护"。
+#   - GitHub / 工蜂：本文件直接生效
+#   - Gitee：不生效，需在仓库设置里手工指定评审人，但仍保留本文件作为名单来源
 # ============================================================================
 
 # 兜底：任何未被下面规则命中的文件，都要项目负责人点头
-*                               @owner-placeholder
+*                               @xiaosp1
 
-# ---- 协作基础设施：改这些等于改所有人的工作方式，必须负责人评审 ----
-/.github/                       @owner-placeholder
-/CODEOWNERS                     @owner-placeholder
-/CONTRIBUTING.md                @owner-placeholder
-/README.md                      @owner-placeholder
-/scripts/                       @owner-placeholder
-/.gitattributes                 @owner-placeholder
-/.gitignore                     @owner-placeholder
+# ---- 协作基础设施：改这些等于改所有人的工作方式 ----
+/.github/                       @xiaosp1
+/CODEOWNERS                     @xiaosp1
+/CONTRIBUTING.md                @xiaosp1
+/README.md                      @xiaosp1
+/scripts/                       @xiaosp1
+/.gitattributes                 @xiaosp1
+/.gitignore                     @xiaosp1
 
 # ---- 文档 ----
-/docs/                          @docs-placeholder
+/docs/                          @xiaosp1
 
-# ---- 业务代码 ----
-/src/backend/                   @backend-placeholder
-/src/frontend/                  @frontend-placeholder
-/src/edge/                      @edge-placeholder
+# ---- 业务代码（TODO：成员到位后逐行替换为模块负责人）----
+/src/backend/                   @xiaosp1
+/src/frontend/                  @xiaosp1
+/src/edge/                      @xiaosp1
 
-# ---- 跨端共享：协议/数据模型改动影响面最大，至少两人评审 ----
-/src/shared/                    @backend-placeholder @frontend-placeholder
+# ---- 跨端共享：协议/数据模型改动影响面最大 ----
+/src/shared/                    @xiaosp1
 
 # ---- 部署与配置 ----
-/deploy/                        @owner-placeholder @backend-placeholder
+/deploy/                        @xiaosp1

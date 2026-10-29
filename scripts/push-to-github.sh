@@ -107,10 +107,13 @@ fi
 
 # ---------------------------------------------------------------- 4. 分支保护
 step "尝试开启 main 分支保护"
+# 引导期说明：仓库目前只有一名管理员，若开 enforce_admins=true，
+# 单人期间自己的 PR 会因无人审批而永远无法合并。因此先设 false（管理员可直推），
+# 成员到位后在 Settings → Branches 勾选 "Do not allow bypassing the above settings" 收紧。
 PROT_BODY=$(cat <<'JSON'
 {
   "required_status_checks": null,
-  "enforce_admins": true,
+  "enforce_admins": false,
   "required_pull_request_reviews": {
     "required_approving_review_count": 1,
     "dismiss_stale_reviews": true,
@@ -129,9 +132,10 @@ PCODE=$(curl -s -o /tmp/gh_prot.json -w '%{http_code}' -X PUT \
         -d "$PROT_BODY" "$API/branches/${BRANCH}/protection")
 
 if [[ "$PCODE" == "200" ]]; then
-  ok "main 已保护：禁止直推 / 禁止 force push / 禁止删除 / 需 1 人 approve"
-  warn "注意：仓库是公开的且只有一个协作者，建议到 Settings → General → Danger Zone"
-  warn "      把仓库转为 Private，否则任何人都能 fork 并提交 PR"
+  ok "main 已保护：成员直推被拒，需 PR + 1 人 approve，禁止 force push / 删除"
+  warn "引导模式（enforce_admins=false）：管理员暂时可直推，避免单人期间 PR 无法合并"
+  warn "成员到位后：Settings → Branches → 勾选 Do not allow bypassing the above settings"
+  warn "注意：仓库是公开的，建议到 Settings → General → Danger Zone 考虑转为 Private"
 else
   warn "自动设置失败（HTTP $PCODE），需手工设置"
   cat <<'EOF'

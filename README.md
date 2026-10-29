@@ -47,7 +47,8 @@ bash scripts/init-repo.sh                                          # macOS / Lin
 │  ├─ 01-仓库与分支规范.md
 │  ├─ 02-开发环境与大文件.md
 │  ├─ 03-评审与合并检查表.md
-│  └─ 04-GitHub仓库设置清单.md
+│  ├─ 04-GitHub仓库设置清单.md
+│  └─ 05-协作者接入指南.md
 ├─ scripts/                   # 初始化与自检脚本
 ├─ src/
 │  ├─ backend/                # 业务服务：库位/任务/订单/接口层
@@ -105,9 +106,9 @@ cd src/frontend && pnpm install && pnpm dev
 
 | 角色 | 人 | 负责范围 |
 | --- | --- | --- |
-| 项目负责人 | `TODO` | 排期、合入决策、发布 |
-| 后端 | `TODO` | `src/backend` |
-| 前端/可视化 | `TODO` | `src/frontend` |
-| 设备接入 | `TODO` | `src/edge` |
+| 项目负责人 | 肖升平 [@xiaosp1](https://github.com/xiaosp1) | 排期、合入决策、发布 |
+| 后端 | `待成员加入后认领` | `src/backend` |
+| 前端/可视化 | `待成员加入后认领` | `src/frontend` |
+| 设备接入 | `待成员加入后认领` | `src/edge` |
 
 > 上表与 `CODEOWNERS` 必须同步维护。人走了不删，只在 WorkBuddy 项目里把成员状态置为离场。
