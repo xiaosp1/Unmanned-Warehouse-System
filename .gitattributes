@@ -1,0 +1,64 @@
+# ============================================================================
+# 换行与合并策略
+# 背景：本项目在 Windows 上开发（D:\01-DEMO\...），同时可能跑 Linux 容器。
+#      靠 .gitattributes 统一，不靠每个人的 core.autocrlf 碰运气。
+# ============================================================================
+
+# 入库统一存 LF，检出时按下面的规则决定
+* text=auto eol=lf
+
+# ---- Windows 脚本必须 CRLF，否则 PowerShell 解析异常 ----
+*.ps1   text eol=crlf
+*.psm1  text eol=crlf
+*.psd1  text eol=crlf
+*.bat   text eol=crlf
+*.cmd   text eol=crlf
+
+# ---- shell 脚本必须 LF，否则容器/WSL 报 bad interpreter ----
+*.sh    text eol=lf
+
+# ---- 二进制：不转换、不尝试文本 diff ----
+*.png   binary
+*.jpg   binary
+*.jpeg  binary
+*.gif   binary
+*.ico   binary
+*.webp  binary
+*.bmp   binary
+*.pdf   binary
+*.zip   binary
+*.7z    binary
+*.gz    binary
+*.onnx  binary
+*.pt    binary
+*.pth   binary
+*.pcd   binary
+*.ply   binary
+
+# ---- Office 与 PDF：二进制，禁止文本合并（否则协作者会互相覆盖出乱码）----
+*.doc   -diff -merge
+*.docx  -diff -merge
+*.xls   -diff -merge
+*.xlsx  -diff -merge
+*.ppt   -diff -merge
+*.pptx  -diff -merge
+
+# ---- 代码平台语言统计：文档类不参与"代码量"排行 ----
+*.md      linguist-documentation
+docs/**   linguist-documentation
+*.ps1     linguist-language=PowerShell
+
+# ============================================================================
+# Git LFS（按需启用）
+# ============================================================================
+# 启用步骤（仓库管理员做一次）：
+#   1) git lfs install                      # 每台开发机执行
+#   2) 取消下面注释
+#   3) git add .gitattributes && git commit -m "chore: 启用 Git LFS"
+# 注意：LFS 一旦启用，历史已入库的大文件不会自动迁移，需 git lfs migrate import
+#
+# *.onnx  filter=lfs diff=lfs merge=lfs -text
+# *.pt    filter=lfs diff=lfs merge=lfs -text
+# *.pth   filter=lfs diff=lfs merge=lfs -text
+# *.bag   filter=lfs diff=lfs merge=lfs -text
+# *.pcd   filter=lfs diff=lfs merge=lfs -text
