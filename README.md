@@ -20,6 +20,9 @@ bash scripts/init-repo.sh                                          # macOS / Lin
 
 然后读 [CONTRIBUTING.md](./CONTRIBUTING.md) 的七条硬规则，从项目待办里领一个任务开工。
 
+> **仓库管理员（首次）**：推送与分支保护见 [docs/04-GitHub仓库设置清单.md](./docs/04-GitHub仓库设置清单.md)，
+> 或直接 `export GITHUB_TOKEN=... && bash scripts/push-to-github.sh` 一条命令完成。
+
 ---
 
 ## 1. 项目定位
@@ -43,7 +46,8 @@ bash scripts/init-repo.sh                                          # macOS / Lin
 │  ├─ 00-WorkBuddy多人协作落地.md
 │  ├─ 01-仓库与分支规范.md
 │  ├─ 02-开发环境与大文件.md
-│  └─ 03-评审与合并检查表.md
+│  ├─ 03-评审与合并检查表.md
+│  └─ 04-GitHub仓库设置清单.md
 ├─ scripts/                   # 初始化与自检脚本
 ├─ src/
 │  ├─ backend/                # 业务服务：库位/任务/订单/接口层
